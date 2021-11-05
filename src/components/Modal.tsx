@@ -7,9 +7,9 @@ type ModalProps = {
     isOpen: boolean,
     closeModal: Function,
     updateText: Function,
+    warning: string,
 }
-function Modal({ deaultText, isOpen = false, closeModal, updateText }: ModalProps) {
-    
+function Modal({ deaultText, isOpen = false, closeModal, updateText,warning }: ModalProps) {
     const [text, set_text] = useState(deaultText)
 
     useEffect(()=>{
@@ -26,6 +26,10 @@ function Modal({ deaultText, isOpen = false, closeModal, updateText }: ModalProp
                 <textarea onInput={SetNewText} value={text} className="modal__text"></textarea>
                 <button onClick={() => updateText(text)} className="modal__btn btn btn-blue">{deaultText ?  'Изменить' : 'Добавить'}</button>
             </div>
+            {
+                warning ? <div  className="modal__warning">{warning}</div> : ''
+            }
+            
         </div>
     )
 }
